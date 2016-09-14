@@ -1,0 +1,11 @@
+version: '2'
+services:
+    archonweb:
+        container_name: archonweb
+        image: acastellano/archonweb:v2
+        volumes:
+          - "./archonweb/apache2_sites_enabled:/etc/apache2/sites-enabled"
+          - "./archonweb/apache2_www:/var/www"
+        ports:
+          - "8080:80"
+        restart: always
