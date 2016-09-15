@@ -1,0 +1,22 @@
+db:
+    image: mariadb:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: toor
+      MYSQL_DATABASE: archondb
+      MYSQL_USER: archon
+      MYSQL_PASSWORD: password
+
+web:
+    image: acastellano/archonweb:v3
+    command: /docker-entrypoint.sh
+    links: 
+      - db
+    ports:
+      - "8080:80"
+    restart: always
+    environment:
+      MYSQL_DATABASE: archondb
+      MYSQL_USER: archon
+      MYSQL_PASSWORD: password
+      MYSQL_HOST: db
